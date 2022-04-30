@@ -16,7 +16,7 @@ module to interface with the inotify API to allow the user to create
 into Event objects, which are then handled by EventHandler objects.
 
 Any number of EventHandlers can be added to a Notifier instance to handle a
-specific watch. This is done when requesting a watch via Notifier.add_watch
+specific watch. This is done when requesting a watch via ``Notifier.add_watch``
 When an Event is emitted for the corresponding watch, each EventHandler is
 queried for capability of handling said Event. The Event is subsequently 
 passed to the EventHandler if it is capable.
@@ -24,7 +24,9 @@ passed to the EventHandler if it is capable.
 Usage
 -----
 
-#### Simple use case
+Simple use case
+---------------
+
 As an example, an EventHandler that handles all event types for a watch
 could be defined as so:
 
@@ -51,7 +53,8 @@ The :python:`AllHandler` can now be added to a watch via
           notifier.add_watch(pathlib.Path.cwd(), AllHandler())
           await notifier.run()
 
-#### A slightly more interesting example
+A slightly more interesting example
+-----------------------------------
 
 .. code:: python
 
@@ -87,7 +90,8 @@ The :python:`AllHandler` can now be added to a watch via
 The above example will run the Notifier run-loop for 10 seconds, generating
 only open and close Events for the watch on the current working directory.
 
-#### Adding/Modifying/Removing watches
+Adding/Modifying/Removing watches
+---------------------------------
 
 Watches can be added as simply as we've seen above. There are a few more
 options that can be specified when adding a watch:
@@ -148,7 +152,8 @@ Watches are easily removed:
           notifier.remove_watch(path, raises=False)  # don't raise
 
 
-#### Adding/Removing/Clearing EventHandlers
+Adding/Removing/Clearing EventHandlers
+--------------------------------------
 EventHandlers can be added when adding a watch, and can be added or removed
 after a watch has already been established:
 
