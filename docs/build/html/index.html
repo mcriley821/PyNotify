@@ -1,0 +1,455 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyNotify Documentation &#8212; PyNotify 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/newline_params.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/class_sep.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="#">PyNotify 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PyNotify Documentation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="pynotify-documentation">
+<h1>PyNotify Documentation<a class="headerlink" href="#pynotify-documentation" title="Permalink to this headline">¶</a></h1>
+<p>PyNotify is a Python interface to the Linux inotify API.
+See the <a class="reference external" href="https://man7.org/linux/man-pages/man7/inotify.7.html">man</a> pages for more details on the inotify API, and
+see more details about this project and usage examples in the <a class="reference external" href="https://github.com/mcriley821/PyNotify.git">README</a></p>
+<dl class="py data">
+<dt class="sig sig-object py" id="pynotify.WatchDescriptor">
+<span class="sig-prename descclassname"><span class="pre">pynotify.</span></span><span class="sig-name descname"><span class="pre">WatchDescriptor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'int'&gt;</span></em><a class="headerlink" href="#pynotify.WatchDescriptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>An inotify watch descriptor. A simple type alias for <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynotify.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynotify.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watch_descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventType" title="pynotify.event_type.EventType"><span class="pre">EventType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unmounted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cookie</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="#pynotify.Event">Events</a> port an inotify_event struct into a Python class,
+with some additional attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>An <a class="reference external" href="#pynotify.Event">Event</a> is a frozen <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataclass()</span></code></a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#dataclasses.FrozenInstanceError" title="(in Python v3.10)"><strong>FrozenInstanceError</strong></a> – Upon attempted attribute change</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.watch_descriptor">
+<span class="sig-name descname"><span class="pre">watch_descriptor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></em><a class="headerlink" href="#pynotify.Event.watch_descriptor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corresponding inotify watch descriptor of this <a class="reference external" href="#pynotify.Event">Event</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pynotify.EventType" title="pynotify.EventType"><span class="pre">EventType</span></a></em><a class="headerlink" href="#pynotify.Event.type" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="#pynotify.EventType">EventType</a> of this <a class="reference external" href="#pynotify.Event">Event</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.is_directory">
+<span class="sig-name descname"><span class="pre">is_directory</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pynotify.Event.is_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a> if the watched file is a directory</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.unmounted">
+<span class="sig-name descname"><span class="pre">unmounted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pynotify.Event.unmounted" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a> if the watched file was unmounted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.cookie">
+<span class="sig-name descname"><span class="pre">cookie</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#pynotify.Event.cookie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corresponding inotify cookie</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.file_name">
+<span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pynotify.Event.file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>File name that caused this <a class="reference external" href="#pynotify.Event">Event</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.Event.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><span class="pre">Path</span></a></em><a class="headerlink" href="#pynotify.Event.file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a> to the file that caused this <a class="reference external" href="#pynotify.Event">Event</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Event.from_buffer">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd_to_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.10)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)"><span class="pre">bytes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pynotify.Event" title="pynotify.event.Event"><span class="pre">Event</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pynotify.Event.from_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starting at <em>offset</em>, unpack <em>buffer</em> to create 
+an <a class="reference external" href="#pynotify.Event">Event</a> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wd_to_path</strong> – A callable to convert a <a class="reference internal" href="#pynotify.WatchDescriptor" title="pynotify.WatchDescriptor"><code class="xref py py-data docutils literal notranslate"><span class="pre">WatchDescriptor</span></code></a>
+into a <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></p></li>
+<li><p><strong>buffer</strong> – The buffer to unpack from</p></li>
+<li><p><strong>offset</strong> – An offset into <em>buffer</em> to begin unpacking</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of the new <a class="reference external" href="#pynotify.Event">Event</a> and new <em>offset</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynotify.EventType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynotify.</span></span><span class="sig-name descname"><span class="pre">EventType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.EventType" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="#pynotify.EventType">EventTypes</a> map to different filesystem events.</p>
+<p>In the <a class="reference external" href="https://man7.org/linux/man-pages/man7/inotify.7.html">man</a> page, event types are listings under the
+<em>inotify events</em> section. (They also correspond in name.)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.ACCESS">
+<span class="sig-name descname"><span class="pre">ACCESS</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x001</span></em><a class="headerlink" href="#pynotify.EventType.ACCESS" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was accessed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.MODIFY">
+<span class="sig-name descname"><span class="pre">MODIFY</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x002</span></em><a class="headerlink" href="#pynotify.EventType.MODIFY" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was modified</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.ATTRIB">
+<span class="sig-name descname"><span class="pre">ATTRIB</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x004</span></em><a class="headerlink" href="#pynotify.EventType.ATTRIB" title="Permalink to this definition">¶</a></dt>
+<dd><p>File attribute metadata changed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.CLOSE_WRITE">
+<span class="sig-name descname"><span class="pre">CLOSE_WRITE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x008</span></em><a class="headerlink" href="#pynotify.EventType.CLOSE_WRITE" title="Permalink to this definition">¶</a></dt>
+<dd><p>File opened for writing was closed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.CLOSE_NOWRITE">
+<span class="sig-name descname"><span class="pre">CLOSE_NOWRITE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x010</span></em><a class="headerlink" href="#pynotify.EventType.CLOSE_NOWRITE" title="Permalink to this definition">¶</a></dt>
+<dd><p>File opened for reading only was closed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.OPEN">
+<span class="sig-name descname"><span class="pre">OPEN</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x020</span></em><a class="headerlink" href="#pynotify.EventType.OPEN" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was opened</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.MOVED_FROM">
+<span class="sig-name descname"><span class="pre">MOVED_FROM</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x040</span></em><a class="headerlink" href="#pynotify.EventType.MOVED_FROM" title="Permalink to this definition">¶</a></dt>
+<dd><p>A file was moved from the watch directory</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.MOVED_TO">
+<span class="sig-name descname"><span class="pre">MOVED_TO</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x080</span></em><a class="headerlink" href="#pynotify.EventType.MOVED_TO" title="Permalink to this definition">¶</a></dt>
+<dd><p>A file was moved to the watch directory</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.CREATE">
+<span class="sig-name descname"><span class="pre">CREATE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x100</span></em><a class="headerlink" href="#pynotify.EventType.CREATE" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was created</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.DELETE">
+<span class="sig-name descname"><span class="pre">DELETE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x200</span></em><a class="headerlink" href="#pynotify.EventType.DELETE" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was deleted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.DELETE_SELF">
+<span class="sig-name descname"><span class="pre">DELETE_SELF</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x400</span></em><a class="headerlink" href="#pynotify.EventType.DELETE_SELF" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was deleted</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.MOVE_SELF">
+<span class="sig-name descname"><span class="pre">MOVE_SELF</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x800</span></em><a class="headerlink" href="#pynotify.EventType.MOVE_SELF" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was moved</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.CLOSE">
+<span class="sig-name descname"><span class="pre">CLOSE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x018</span></em><a class="headerlink" href="#pynotify.EventType.CLOSE" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was closed: (<a class="reference internal" href="#pynotify.EventType.CLOSE_WRITE" title="pynotify.EventType.CLOSE_WRITE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CLOSE_WRITE</span></code></a> | <a class="reference internal" href="#pynotify.EventType.CLOSE_NOWRITE" title="pynotify.EventType.CLOSE_NOWRITE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">CLOSE_NOWRITE</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.MOVED">
+<span class="sig-name descname"><span class="pre">MOVED</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0x0c0</span></em><a class="headerlink" href="#pynotify.EventType.MOVED" title="Permalink to this definition">¶</a></dt>
+<dd><p>File was moved: (<a class="reference internal" href="#pynotify.EventType.MOVED_FROM" title="pynotify.EventType.MOVED_FROM"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MOVED_FROM</span></code></a> | <a class="reference internal" href="#pynotify.EventType.MOVED_TO" title="pynotify.EventType.MOVED_TO"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MOVED_TO</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynotify.EventType.ALL">
+<span class="sig-name descname"><span class="pre">ALL</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">0xfff</span></em><a class="headerlink" href="#pynotify.EventType.ALL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience <a class="reference external" href="#pynotify.EventType">EventType</a> for all above <a class="reference external" href="#pynotify.EventType">EventTypes</a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynotify.EventHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynotify.</span></span><span class="sig-name descname"><span class="pre">EventHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.EventHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a></p>
+<p>Outlines an <a class="reference external" href="#pynotify.EventHandler">EventHandler</a> object.</p>
+<p>Conforming objects can be added to a <a class="reference external" href="#pynotify.Notifier">Notifier</a> instance via
+<a class="reference internal" href="#pynotify.Notifier.add_watch" title="pynotify.Notifier.add_watch"><code class="xref py py-func docutils literal notranslate"><span class="pre">Notifier.add_watch()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.EventHandler.handle_event">
+<span class="sig-name descname"><span class="pre">handle_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.Event" title="pynotify.event.Event"><span class="pre">Event</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#pynotify.EventHandler.handle_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the provided <a class="reference external" href="#pynotify.Event">Event</a> <em>event</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>event</strong> – An <a class="reference external" href="#pynotify.Event">Event</a> generated by the corresponding watch
+added with <a class="reference internal" href="#pynotify.Notifier.add_watch" title="pynotify.Notifier.add_watch"><code class="xref py py-func docutils literal notranslate"><span class="pre">Notifier.add_watch()</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.EventHandler.can_handle_event_type">
+<span class="sig-name descname"><span class="pre">can_handle_event_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventType" title="pynotify.event_type.EventType"><span class="pre">EventType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pynotify.EventHandler.can_handle_event_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>A method required by a <a class="reference external" href="#pynotify.Notifier">Notifier</a> to query this <a class="reference external" href="#pynotify.EventHandler">EventHandler</a>
+on whether it can handle the provided <a class="reference external" href="#pynotify.EventType">EventType</a> <em>type</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>type</strong> – <a class="reference external" href="#pynotify.EventType">EventType</a> to be handled</p>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a> if this <a class="reference external" href="#pynotify.EventHandler">EventHandler</a> can handle the 
+provided <a class="reference external" href="#pynotify.EventType">EventType</a> <em>type</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynotify.Notifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynotify.</span></span><span class="sig-name descname"><span class="pre">Notifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">async_loop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.AbstractEventLoop"><span class="pre">AbstractEventLoop</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">libc_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.watch_descriptor_to_path">
+<span class="sig-name descname"><span class="pre">watch_descriptor_to_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watch_descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a></span></span><a class="headerlink" href="#pynotify.Notifier.watch_descriptor_to_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the corresponding <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> of a <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>watch_descriptor</strong> – The <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a> to convert to a 
+<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.add_watch">
+<span class="sig-name descname"><span class="pre">add_watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.10)"><span class="pre">Path</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventHandler" title="pynotify.event_handler.EventHandler"><span class="pre">EventHandler</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_event_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventType" title="pynotify.event_type.EventType"><span class="pre">EventType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">EventType.ALL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">follow_symlinks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_directory_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneshot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_unlinks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.add_watch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a watch to the specified <em>file_path</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> – <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> to watch</p></li>
+<li><p><strong>handlers</strong> – Any number of <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> to handle
+<a class="reference external" href="#pynotify.Event">Events</a> from the created watch</p></li>
+<li><p><strong>only_event_types</strong> – Generate an <a class="reference external" href="#pynotify.Event">Event</a> only for the 
+specified <a class="reference external" href="#pynotify.EventType">EventTypes</a></p></li>
+<li><p><strong>follow_symlinks</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a>, watch even if <em>file_path</em>
+is a symlink</p></li>
+<li><p><strong>if_directory_only</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a>, watch only if <em>file_path</em>
+is a directory</p></li>
+<li><p><strong>oneshot</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a>, delete the watch on <em>file_path</em>
+after the first <a class="reference external" href="#pynotify.Event">Event</a> is generated</p></li>
+<li><p><strong>exclude_unlinks</strong> – Stop watching children when unlinked from
+a watch directory. See the <a class="reference external" href="https://man7.org/linux/man-pages/man7/inotify.7.html">man</a> for
+more details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.10)"><strong>FileNotFoundError</strong></a> – If <em>file_path</em> does not exist</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If a watch already exists for <em>file_path</em></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.10)"><strong>OSError</strong></a> – If <em>follow_symlinks</em> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">False</span></code></a> and 
+<em>file_path</em> is a symlink</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.10)"><strong>OSError</strong></a> – If <em>if_directory_only</em> is <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a> and 
+<em>file_path</em> is not a directory</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.modify_watch_event_types">
+<span class="sig-name descname"><span class="pre">modify_watch_event_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventType" title="pynotify.EventType"><span class="pre">EventType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.modify_watch_event_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the possible <a class="reference external" href="#pynotify.Event">Events</a> that can be generated for
+the watch at <em>descriptor</em> by modifying the <a class="reference external" href="#pynotify.EventType">EventTypes</a> for 
+said watch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descriptor</strong> – A <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> or <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a> to change
+the <a class="reference external" href="#pynotify.EventType">EventTypes</a> for</p></li>
+<li><p><strong>new_types</strong> – <a class="reference external" href="#pynotify.EventType">EventTypes</a> of <a class="reference external" href="#pynotify.Event">Events</a> to generate</p></li>
+<li><p><strong>merge</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a> merge <em>new_types</em> with the existing
+<a class="reference external" href="#pynotify.EventType">EventTypes</a> for the watch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If there is no watch on <em>descriptor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.remove_watch">
+<span class="sig-name descname"><span class="pre">remove_watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">raises</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.remove_watch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a watch on the <em>descriptor</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descriptor</strong> – A <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> or <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a> to remove</p></li>
+<li><p><strong>raises</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a>, raise a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></a> if
+the <em>descriptor</em> does not have a watch</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If <em>raises</em> and there is no watch on <em>descriptor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.add_handlers">
+<span class="sig-name descname"><span class="pre">add_handlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventHandler" title="pynotify.EventHandler"><span class="pre">EventHandler</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.add_handlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> <em>handlers</em> to the watch on <em>descriptor</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Skips a handler if it is already on the <em>descriptor</em></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descriptor</strong> – A <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> or <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a> to add
+<em>handlers</em> to</p></li>
+<li><p><strong>handlers</strong> – New <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> to add to <em>descriptor</em></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.clear_handlers">
+<span class="sig-name descname"><span class="pre">clear_handlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.clear_handlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear all <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> for the watch on <em>descriptor</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>descriptor</strong> – A <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> or <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a> to
+clear <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> from</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If there is no watch on <em>descriptor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.remove_handlers">
+<span class="sig-name descname"><span class="pre">remove_handlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">descriptor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><span class="pre">Path</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="#pynotify.WatchDescriptor"><span class="pre">WatchDescriptor</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pynotify.EventHandler" title="pynotify.EventHandler"><span class="pre">EventHandler</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.remove_handlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> <em>handlers</em> from the watch on <em>descriptor</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descriptor</strong> – A <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a> or <a class="reference external" href="#pynotify.WatchDescriptor">WatchDescriptor</a> to remove
+<a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> from</p></li>
+<li><p><strong>handlers</strong> – <a class="reference external" href="#pynotify.EventHandler">EventHandlers</a> to remove from <em>descriptor</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If there is no watch on <em>descriptor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.run">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/asyncio-sync.html#asyncio.Event"><span class="pre">asyncio.Event</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handle_once</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn_unhandled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asynchronously generate <a class="reference external" href="#pynotify.Event">Events</a> until <em>stop_event</em> is set.
+When an <a class="reference external" href="#pynotify.Event">Event</a> is generated, the <a class="reference internal" href="#pynotify.EventHandler.handle_event" title="pynotify.EventHandler.handle_event"><code class="xref py py-func docutils literal notranslate"><span class="pre">EventHandler.handle_event()</span></code></a>
+method for each <a class="reference external" href="#pynotify.EventHandler">EventHandler</a> for the watch, from
+<a class="reference internal" href="#pynotify.Notifier.add_watch" title="pynotify.Notifier.add_watch"><code class="xref py py-func docutils literal notranslate"><span class="pre">Notifier.add_watch()</span></code></a>, is called with the generated <a class="reference external" href="#pynotify.Event">Event</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stop_event</strong> – <a class="reference external" href="https://docs.python.org/3/library/asyncio-sync.html#asyncio.Event" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">asyncio.Event</span></code></a> to stop generating
+<a class="reference external" href="#pynotify.Event">Events</a> when set.</p></li>
+<li><p><strong>handle_once</strong> – If <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a> the generated <a class="reference external" href="#pynotify.Event">Event</a> is
+discarded after it is handled by the first
+capable <a class="reference external" href="#pynotify.EventHandler">EventHandler</a>.</p></li>
+<li><p><strong>warn_unhandled</strong> – Emit a warning via <a class="reference external" href="https://docs.python.org/3/library/warnings.html#warnings.warn" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">warnings.warn()</span></code></a>
+if an <a class="reference external" href="#pynotify.Event">Event</a> is not handled.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynotify.Notifier.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pynotify.Notifier.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the inotify fd</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="#">PyNotify 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PyNotify Documentation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Matt Riley.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+  </body>
+</html>
