@@ -5,8 +5,17 @@ PyNotify is an async Python interface to the Linux inotify API.
 See `man inotify <https://man7.org/linux/man-pages/man7/inotify.7.html>`_
 for more information regarding inotify details.
 
+See the `documentation <https://mcriley821.github.io/PyNotify/build/html/index.html>`_!
+
 Install
 -------
+To install manually, clone the repo and pip install:
+
+.. code:: bash
+
+  git clone https://github.com/mcriley821/PyNotify.git
+  cd PyNotify && pip install .
+
 
 Description
 -----------
