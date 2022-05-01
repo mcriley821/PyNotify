@@ -47,7 +47,7 @@ could be defined as so:
   class AllHandler:
       def handle_event(self, event: Event) -> None:
           # just print out what is happening
-          print(f"File {event.name} {event.type.name} at {event.path}")
+          print(f"{event.type.name} at {event.file_path}")
 
       def can_handle_event_type(self, type: EventType) -> bool:
           return EventType.ALL & type != 0
