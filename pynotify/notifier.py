@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from __future__ import annotations
 import asyncio
+import warnings
 import ctypes
 import errno
 import os
@@ -27,21 +28,7 @@ ONESHOT     = 31  # shift for 0x8000_0000
 MASK_ADD    = 29  # shift for 0x2000_0000
 
 
-class TwoWayDict(dict):
-    """Dict subclass to automatically add a value: key pair
-       whenever a key: value pair is added.
-
-       This is for convenience sake. Instead of tracking two
-       dicts in the owning object, using this class requires
-       only one.
-    """
-    def __setitem__(self, key, value):
-        """Add the key: value pair and the value: key pair"""
-        dict.__setitem__(self, key, value)
-        dict.__setitem__(self, value, key)
-
-
-def load_libc(path: Path | None = None) -> ctypes.CDLL:
+def load_libc(path: str | None = None) -> ctypes.CDLL:
     """Load libc and return a ctypes.CDLL.
 
        :param path: An optional path to libc.so
@@ -61,12 +48,12 @@ class Notifier:
     def __init__(self, 
                  async_loop: asyncio.AbstractEventLoop | None = None,
                  libc_path: Path | None = None):
-        self._libc = load_libc(libc_path)
+        self._libc = load_libc(str(libc_path))
         self._define_inotify_functions()
 
         self._loop = async_loop if async_loop else asyncio.get_running_loop()
-        self._wd_paths: TwoWayDict[WatchDescriptor, Path] = TwoWayDict()
-        self._queue = asyncio.Queue()
+        self._wd_paths: dict[WatchDescriptor|Path, Path|WatchDescriptor] = {}
+        self._queue: asyncio.Queue[Event] = asyncio.Queue()
         self._handlers: dict[WatchDescriptor, set[EventHandler]] = {}
 
         self._fd = self._inotify_init()
@@ -192,6 +179,7 @@ class Notifier:
 
         wd = self._libc.inotify_add_watch(self._fd, bytes_path, mask)
         self._wd_paths[wd] = file_path
+        self._wd_paths[file_path] = wd
         self._handlers[wd] = set(handlers)
 
     def modify_watch_event_types(self,
@@ -215,7 +203,7 @@ class Notifier:
         if isinstance(descriptor, Path):
             descriptor = descriptor.expanduser()
 
-        if not descriptor in self._wd_paths:
+        if descriptor not in self._wd_paths:
             raise ValueError(f"No watch on descriptor '{descriptor}'!")
         
         if isinstance(descriptor, Path):

@@ -3,7 +3,7 @@ from enum import IntFlag
 from typing import Any
 
 from sphinx.application import Sphinx
-from sphinx.ext.autodoc import ClassDocumenter, bool_option, ALL
+from sphinx.ext.autodoc import Documenter, ClassDocumenter, bool_option, ALL
 
 
 class IntFlagDocumenter(ClassDocumenter):
