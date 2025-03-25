@@ -1,3 +1,32 @@
+[project]
+name = "pynotify-mcriley821"
+version = "0.0.1"
+authors = [
+  { name="mcriley821" },
+]
+maintainers = [
+  { name="mcriley821" },
+]
+description = "PyNotify is an async Python interface to the Linux inotify API."
+readme = "README.rst"
+license-files = [
+  "UNLICENSE"
+]
+requires-python = ">=3.10"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: The Unlicense (Unlicense)",
+  "Operating System :: POSIX :: Linux",
+  "Topic :: System :: Filesystems"
+]
+keywords = ["inotify", "async", "asyncio", "monitor", "file monitor"]
+
+[project.urls]
+Homepage = "https://github.com/mcriley821/pynotify"
+Documentation = "https://mcriley821.github.io/PyNotify/build/html/index.html"
+Issues = "https://github.com/mcriley821/pynotify/issues"
+
 [build-system]
-requires = ["setuptools>=58", "wheel"]
-specifications.build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
