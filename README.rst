@@ -9,6 +9,13 @@ See the `documentation <https://mcriley821.github.io/PyNotify/build/html/index.h
 
 Install
 -------
+Install via pip:
+
+.. code:: bash
+
+  pip install pynotify-mcriley821
+
+
 To install manually, clone the repo and pip install:
 
 .. code:: bash
